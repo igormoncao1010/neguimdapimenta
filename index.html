@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSD Neguim da Pimenta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Cores do PSD - Azul, Verde e Amarelo */
+            --cor-azul: #0056A6; /* Azul PSD */
+            --cor-verde: #008000; /* Verde */
+            --cor-amarelo: #FFD700; /* Amarelo */
+            --cor-branco: #FFFFFF;
+            --cor-preto: #000000;
+            --cor-cinza-claro: #f8f9fa;
+            --cor-cinza: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--cor-preto);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Azul */
+        header {
+            background-color: var(--cor-azul);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
+        }
+        
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Logo à esquerda */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 45px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Botão branco pulsante à direita */
+        .btn-apoiar {
+            background-color: var(--cor-branco);
+            color: var(--cor-azul);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-apoiar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
+            background-color: #f5f5f5;
+        }
+        
+        /* Efeito pulsante branco */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Seção Hero - Apenas Vídeo e Imagem */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            display: block;
+            background-color: #000;
+        }
+        
+        /* Overlay Preto sobre o vídeo */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        
+        /* Container da imagem centralizada */
+        .image-container {
+            position: relative;
+            width: 92%;
+            max-width: 1300px;
+            height: 88vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1s ease-out;
+        }
+        
+        .hero-image.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Imagem para Desktop */
+        .image-desktop {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* Imagem para Mobile - inicialmente escondida */
+        .image-mobile {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* Mensagem de fallback */
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -3;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Seção de Downloads */
+        .downloads-section {
+            background-color: var(--cor-cinza-claro);
+            padding: 100px 20px;
+        }
+        
+        .downloads-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Seção de Galeria */
+        .gallery-section {
+            background-color: var(--cor-branco);
+            padding: 100px 20px;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            color: var(--cor-azul);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        .section-subtitle {
+            color: var(--cor-cinza);
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Grid de Downloads */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .download-card {
+            background-color: var(--cor-branco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .download-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Ícones substituídos por imagens */
+        .download-icon {
+            background-color: var(--cor-azul);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .download-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .download-card:hover .download-icon img {
+            transform: scale(1.1);
+        }
+        
+        .download-content {
+            padding: 30px;
+        }
+        
+        .download-title {
+            color: var(--cor-azul);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .download-description {
+            color: var(--cor-cinza);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--cor-verde);
+            color: var(--cor-branco);
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .download-button:hover {
+            background-color: #006600;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 128, 0, 0.2);
+        }
+        
+        /* Galeria de Fotos */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: scale(0.9);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            padding: 30px 20px 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--cor-azul);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Seção de Contato Minimalista */
+        .contact-section {
+            background-color: var(--cor-cinza-claro);
+            padding: 100px 20px;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .contact-card {
+            background-color: var(--cor-branco);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .contact-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            color: var(--cor-azul);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+        }
+        
+        .contact-card h3 {
+            color: var(--cor-azul);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            color: var(--cor-cinza);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .contact-email {
+            color: var(--cor-azul);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-email:hover {
+            color: #004080;
+            text-decoration: underline;
+        }
+        
+        .whatsapp-button {
+            display: inline-block;
+            background-color: var(--cor-verde);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #006600;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2);
+        }
+        
+        /* Formulário Minimalista */
+        .contact-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        
+        .form-group.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .form-group:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+        
+        .form-group:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--cor-azul);
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: var(--cor-branco);
+        }
+        
+        .form-input:focus {
+            border-color: var(--cor-azul);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 166, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: var(--cor-azul);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.3s;
+        }
+        
+        .submit-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .submit-button:hover {
+            background-color: #004080;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 86, 166, 0.2);
+        }
+        
+        /* Footer Azul */
+        footer {
+            background-color: var(--cor-azul);
+            padding: 50px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .footer-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Modal para imagem ampliada */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            z-index: 1002;
+        }
+        
+        .close-modal:hover {
+            color: var(--cor-amarelo);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 12px 0;
+            }
+            
+            .logo {
+                height: 35px;
+            }
+            
+            .btn-apoiar {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .image-container {
+                width: 96%;
+                height: 82vh;
+            }
+            
+            .video-overlay {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+            
+            .image-desktop {
+                display: none;
+            }
+            
+            .image-mobile {
+                display: block;
+            }
+            
+            .downloads-section,
+            .gallery-section,
+            .contact-section {
+                padding: 70px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+            
+            .contact-icon {
+                font-size: 2rem;
+            }
+            
+            .download-icon {
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                height: 30px;
+            }
+            
+            .btn-apoiar {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .image-container {
+                width: 98%;
+                height: 78vh;
+            }
+            
+            .downloads-section,
+            .gallery-section,
+            .contact-section {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .download-content {
+                padding: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-icon {
+                height: 90px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .contact-card:nth-child(3) {
+                grid-column: span 2;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Azul -->
+    <header id="mainHeader">
+        <div class="menu-container">
+            <!-- Logo à esquerda -->
+            <div class="logo-container">
+                <!-- Logo SVG - substitua por 01.svg -->
+                <img src="01.svg" alt="Logo PSD do Neguim da Pimenta" class="logo">
+            </div>
+            
+            <!-- Botão branco pulsante à direita -->
+            <button class="btn-apoiar pulse-animation">
+                Apoiar
+            </button>
+        </div>
+    </header>
+
+    <!-- Seção Principal - Apenas Vídeo e Imagem -->
+    <section class="hero-section">
+        <!-- Vídeo de fundo -->
+        <video class="video-background" autoplay muted loop playsinline preload="auto">
+            <source src="video.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+        
+        <!-- Mensagem de fallback se o vídeo não carregar -->
+        <div class="video-fallback" id="videoFallback" style="display: none;">
+            <div>
+                <p>O vídeo não pôde ser carregado. Verifique se o arquivo video.mp4 está na pasta correta.</p>
+                <button onclick="retryVideo()" style="margin-top: 20px; padding: 10px 20px; background: var(--cor-azul); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Tentar Novamente
+                </button>
+            </div>
+        </div>
+        
+        <!-- Overlay preto sobre o vídeo -->
+        <div class="video-overlay"></div>
+        
+        <!-- Container das imagens -->
+        <div class="image-container">
+            <div class="hero-image" id="heroImage">
+                <!-- Imagem para Desktop - substitua por 01.png -->
+                <img src="01.png" alt="Imagem do PSD Neguim da Pimenta - Desktop" class="image-desktop">
+                
+                <!-- Imagem para Mobile - substitua por 02.png -->
+                <img src="02.png" alt="Imagem do PSD Neguim da Pimenta - Mobile" class="image-mobile">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Downloads -->
+    <section class="downloads-section">
+        <div class="downloads-container">
+            <div class="section-header" id="downloadsHeader">
+                <h2 class="section-title">Materiais para Download</h2>
+                <p class="section-subtitle">Baixe nossos informativos e conheça nossas propostas</p>
+            </div>
+            
+            <div class="downloads-grid">
+                <!-- PDF 1 - Camareiras -->
+                <div class="download-card" id="downloadCard1">
+                    <div class="download-icon">
+                        <img src="A.png" alt="Camareiras - Mulheres Invisíveis">
+                    </div>
+                    <div class="download-content">
+                        <h3 class="download-title">CAMAREIRAS - MULHERES INVISÍVEIS</h3>
+                        <p class="download-description">
+                            A cada vez que entramos em um quarto limpo de hotel ou hospital, raramente pensamos em quem preparou aquele ambiente. Por trás do conforto e da sensação de acolhimento, há mãos que trabalham silenciosamente.
+                        </p>
+                        <a href="CAMAREIRAS.pdf" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- PDF 2 - Programa de Governo -->
+                <div class="download-card" id="downloadCard2">
+                    <div class="download-icon">
+                        <img src="B.png" alt="Programa de Governo">
+                    </div>
+                    <div class="download-content">
+                        <h3 class="download-title">AGORA É QUSTÃO DE SOBERANIA</h3>
+                        <p class="download-description">
+                            Carta ao povo brasileiro: por um Brasil acima das disputas, unido diante das ameaças externas.
+                        </p>
+                        <a href="SOBERANIA.pdf" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- PDF 3 - Relatório de Atividades -->
+                <div class="download-card" id="downloadCard3">
+                    <div class="download-icon">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmVwb3J0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Relatório de Atividades">
+                    </div>
+                    <div class="download-content">
+                        <h3 class="download-title">RELATÓRIO DE ATIVIDADES</h3>
+                        <p class="download-description">
+                            Acompanhe nossas ações realizadas e os resultados alcançados para a comunidade. Transparência e prestação de contas são nossos compromissos com você.
+                        </p>
+                        <a href="#" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Galeria de Fotos -->
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <div class="section-header" id="galleryHeader">
+                <h2 class="section-title">Galeria de Fotos</h2>
+                <p class="section-subtitle">Momentos e atividades do PSD Neguim da Pimenta</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Foto 1 -->
+                <div class="gallery-item" id="galleryItem1" onclick="openModal('https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/04/BR_CNN_060425_LINK_SP_DRONE_MANIFESTACAO_PAULISTA_frame_13230.jpeg?w=419&h=283&crop=0')">
+                    <div class="gallery-number">1</div>
+                    <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/04/BR_CNN_060425_LINK_SP_DRONE_MANIFESTACAO_PAULISTA_frame_13230.jpeg?w=419&h=283&crop=0" alt="Atividade comunitária do PSD" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Atividade Comunitária</h4>
+                        <p>Encontro com moradores da região</p>
+                    </div>
+                </div>
+                
+                <!-- Foto 2 -->
+                <div class="gallery-item" id="galleryItem2" onclick="openModal('https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/08/AGE20250803071.jpg?w=1200&h=900&crop=1')">
+                    <div class="gallery-number">2</div>
+                    <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/08/AGE20250803071.jpg?w=1200&h=900&crop=1" alt="Reunião do PSD" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Reunião de Planejamento</h4>
+                        <p>Discutindo propostas para a comunidade</p>
+                    </div>
+                </div>
+                
+                <!-- Foto 3 -->
+                <div class="gallery-item" id="galleryItem3" onclick="openModal('https://static.poder360.com.br/2024/02/ato-bolsonaro-foto-1-25-fev-848x477.jpeg')">
+                    <div class="gallery-number">3</div>
+                    <img src="https://static.poder360.com.br/2024/02/ato-bolsonaro-foto-1-25-fev-848x477.jpeg" alt="Evento do PSD" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Evento Público</h4>
+                        <p>Apresentação de projetos à população</p>
+                    </div>
+                </div>
+                
+                <!-- Foto 4 -->
+                <div class="gallery-item" id="galleryItem4" onclick="openModal('https://www.otempo.com.br/content/dam/otempo/editorias/politica/2024/2/politica-ato-de-bolsonaro-na-paulista-jair-bolsonaro-galeria-de-fotos-1713577489.jpeg')">
+                    <div class="gallery-number">4</div>
+                    <img src="https://www.otempo.com.br/content/dam/otempo/editorias/politica/2024/2/politica-ato-de-bolsonaro-na-paulista-jair-bolsonaro-galeria-de-fotos-1713577489.jpeg" alt="Ação social do PSD" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Ação Social</h4>
+                        <p>Distribuição de alimentos e materiais</p>
+                    </div>
+                </div>
+                
+                <!-- Foto 5 -->
+                <div class="gallery-item" id="galleryItem5" onclick="openModal('https://s2-oglobo.glbimg.com/ra35n-LVUNzkHCiyZHbxX8ESOVY=/0x0:3543x2362/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/G/CajoB2SkOZhRfHX645vw/106033610-aerial-view-showing-supporters-of-brazilian-president-jair-bolsonaro-2019-2022-attending-a.jpg')">
+                    <div class="gallery-number">5</div>
+                    <img src="https://s2-oglobo.glbimg.com/ra35n-LVUNzkHCiyZHbxX8ESOVY=/0x0:3543x2362/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/G/CajoB2SkOZhRfHX645vw/106033610-aerial-view-showing-supporters-of-brazilian-president-jair-bolsonaro-2019-2022-attending-a.jpg" alt="Visita a obras do PSD" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Visita a Obras</h4>
+                        <p>Acompanhamento de projetos em andamento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato Minimalista -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="section-header" id="contactHeader">
+                <h2 class="section-title">Fique por Dentro</h2>
+                <p class="section-subtitle">Entre em contato para receber atualizações</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- E-mail -->
+                <div class="contact-card" id="contactCard1">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Contato por E-mail</h3>
+                    <p>Envie suas dúvidas e sugestões</p>
+                    <a href="mailto:contato@neguimdapimenta.com.br" class="contact-email">
+                        contato@neguimdapimenta.com.br
+                    </a>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group" id="formGroup1">
+                                <label for="name">Seu Nome</label>
+                                <input type="text" id="name" name="name" class="form-input" required placeholder="Nome completo">
+                            </div>
+                            
+                            <div class="form-group" id="formGroup2">
+                                <label for="email">Seu E-mail</label>
+                                <input type="email" id="email" name="email" class="form-input" required placeholder="seu@email.com">
+                            </div>
+                            
+                            <div class="form-group" id="formGroup3">
+                                <label for="message">Mensagem</label>
+                                <textarea id="message" name="message" class="form-input form-textarea" required placeholder="Digite sua mensagem..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-button" id="submitButton">
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="contact-card" id="contactCard2">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Converse diretamente com nossa equipe</p>
+                    <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20as%20atualizações" 
+                       class="whatsapp-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Enviar Mensagem
+                    </a>
+                    <p style="margin-top: 15px; font-size: 0.85rem; color: var(--cor-cinza);">
+                        Substitua o número acima pelo número correto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Azul -->
+    <footer>
+        <div class="footer-content" id="footerContent">
+            <img src="01.svg" alt="Logo PSD do Neguim da Pimenta" class="footer-logo">
+            <p class="footer-text">PSD - Partido Social Democrata</p>
+            <p class="footer-text">Trabalhando por uma comunidade mais justa</p>
+            <p class="copyright">© 2026 Neguim da Pimenta. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para imagem ampliada -->
+    <div class="modal" id="imageModal">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div class="modal-content">
+            <img id="modalImage" class="modal-img" alt="Imagem ampliada">
+        </div>
+    </div>
+
+    <script>
+        // Interatividade do botão de apoio
+        const btnApoiar = document.querySelector('.btn-apoiar');
+        
+        btnApoiar.addEventListener('click', function() {
+            alert('Obrigado pelo seu apoio ao PSD do Neguim da Pimenta! Em breve entraremos em contato.');
+        });
+        
+        // Pausar animação pulsante no hover
+        btnApoiar.addEventListener('mouseenter', function() {
+            this.classList.remove('pulse-animation');
+        });
+        
+        btnApoiar.addEventListener('mouseleave', function() {
+            setTimeout(() => {
+                this.classList.add('pulse-animation');
+            }, 500);
+        });
+        
+        // Ajustar altura da seção hero para compensar o header
+        function adjustHeroHeight() {
+            const heroSection = document.querySelector('.hero-section');
+            const headerHeight = document.querySelector('header').offsetHeight;
+            
+            heroSection.style.height = `calc(100vh - ${headerHeight}px)`;
+            heroSection.style.marginTop = `${headerHeight}px`;
+        }
+        
+        // Efeito de scroll no header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Verificar se o vídeo está funcionando
+        function checkVideoPlayback() {
+            const video = document.querySelector('.video-background');
+            const videoFallback = document.getElementById('videoFallback');
+            
+            setTimeout(() => {
+                if (video.readyState === 0 || video.paused) {
+                    const playPromise = video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Vídeo começou a tocar após tentativa manual');
+                        }).catch(error => {
+                            console.log('Erro ao tentar tocar o vídeo:', error);
+                            videoFallback.style.display = 'flex';
+                        });
+                    }
+                }
+            }, 3000);
+        }
+        
+        // Função para tentar novamente carregar o vídeo
+        function retryVideo() {
+            const video = document.querySelector('.video-background');
+            const videoFallback = document.getElementById('videoFallback');
+            
+            videoFallback.style.display = 'none';
+            video.load();
+            
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Vídeo recarregado e tocando');
+                }).catch(error => {
+                    console.log('Erro ao tentar tocar o vídeo após recarregar:', error);
+                    videoFallback.style.display = 'flex';
+                });
+            }
+        }
+        
+        // Formulário de Contato
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Validar campos obrigatórios
+            if (!name || !email || !message) {
+                alert('Por favor, preencha todos os campos');
+                return;
+            }
+            
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um endereço de e-mail válido');
+                return;
+            }
+            
+            // Criar o link mailto com os dados do formulário
+            const subject = `Contato Site - ${name}`;
+            const body = `Nome: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMensagem:%0D%0A${message}`;
+            
+            const mailtoLink = `mailto:contato@neguimdapimenta.com.br?subject=${encodeURIComponent(subject)}&body=${body}`;
+            
+            // Abrir cliente de e-mail padrão
+            window.location.href = mailtoLink;
+            
+            // Feedback para o usuário
+            setTimeout(() => {
+                alert('Mensagem preparada para envio. Verifique seu cliente de e-mail.');
+                document.getElementById('contactForm').reset();
+            }, 500);
+        });
+        
+        // Função para verificar se elemento está visível na tela
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
+                rect.bottom >= 0
+            );
+        }
+        
+        // Função para mostrar elementos quando estiverem visíveis
+        function checkVisibility() {
+            // Imagem hero
+            const heroImage = document.getElementById('heroImage');
+            if (isElementInViewport(heroImage) && !heroImage.classList.contains('visible')) {
+                heroImage.classList.add('visible');
+            }
+            
+            // Downloads header
+            const downloadsHeader = document.getElementById('downloadsHeader');
+            if (downloadsHeader && isElementInViewport(downloadsHeader) && !downloadsHeader.classList.contains('visible')) {
+                downloadsHeader.classList.add('visible');
+            }
+            
+            // Cards de download
+            const downloadCards = document.querySelectorAll('.download-card');
+            downloadCards.forEach((card, index) => {
+                if (isElementInViewport(card) && !card.classList.contains('visible')) {
+                    // Delay para cada card
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            // Galeria header
+            const galleryHeader = document.getElementById('galleryHeader');
+            if (galleryHeader && isElementInViewport(galleryHeader) && !galleryHeader.classList.contains('visible')) {
+                galleryHeader.classList.add('visible');
+            }
+            
+            // Itens da galeria
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach((item, index) => {
+                if (isElementInViewport(item) && !item.classList.contains('visible')) {
+                    // Delay para cada item
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+            
+            // Contato header
+            const contactHeader = document.getElementById('contactHeader');
+            if (contactHeader && isElementInViewport(contactHeader) && !contactHeader.classList.contains('visible')) {
+                contactHeader.classList.add('visible');
+            }
+            
+            // Cards de contato
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach((card, index) => {
+                if (isElementInViewport(card) && !card.classList.contains('visible')) {
+                    // Delay para cada card
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            // Grupos do formulário
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                if (isElementInViewport(group) && !group.classList.contains('visible')) {
+                    setTimeout(() => {
+                        group.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+            
+            // Botão submit
+            const submitButton = document.getElementById('submitButton');
+            if (submitButton && isElementInViewport(submitButton) && !submitButton.classList.contains('visible')) {
+                setTimeout(() => {
+                    submitButton.classList.add('visible');
+                }, 300);
+            }
+            
+            // Footer
+            const footerContent = document.getElementById('footerContent');
+            if (footerContent && isElementInViewport(footerContent) && !footerContent.classList.contains('visible')) {
+                footerContent.classList.add('visible');
+            }
+        }
+        
+        // Mostrar imagem hero imediatamente (sem esperar scroll)
+        setTimeout(() => {
+            const heroImage = document.getElementById('heroImage');
+            heroImage.classList.add('visible');
+        }, 500);
+        
+        // Simulação de download com feedback
+        document.querySelectorAll('.download-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const fileName = this.getAttribute('href');
+                
+                // Verificar se o arquivo existe (simulação)
+                setTimeout(() => {
+                    alert(`Download iniciado: ${fileName}\n\nSe o download não começar automaticamente, verifique:\n1. Se o arquivo está na pasta do site\n2. Permissões do navegador\n3. Espaço disponível no dispositivo`);
+                }, 100);
+            });
+        });
+        
+        // Modal para galeria de fotos
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modalImage.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Impede scroll do body
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaura scroll do body
+        }
+        
+        // Fechar modal ao clicar fora da imagem
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Inicializar quando a página carregar
+        window.addEventListener('load', function() {
+            adjustHeroHeight();
+            checkVideoPlayback();
+            checkVisibility(); // Verificar elementos visíveis inicialmente
+            
+            const video = document.querySelector('.video-background');
+            
+            video.addEventListener('error', function(e) {
+                console.error('Erro no carregamento do vídeo:', e);
+                document.getElementById('videoFallback').style.display = 'flex';
+            });
+            
+            // Tentar tocar o vídeo manualmente
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Autoplay bloqueado pelo navegador. Tentando alternativas...');
+                    
+                    document.addEventListener('click', function playOnInteraction() {
+                        video.play();
+                        document.removeEventListener('click', playOnInteraction);
+                    });
+                });
+            }
+        });
+        
+        // Verificar elementos visíveis durante o scroll
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', function() {
+            adjustHeroHeight();
+            checkVisibility();
+        });
+        
+        // Detectar mudança de orientação do dispositivo
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                adjustHeroHeight();
+                checkVisibility();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
