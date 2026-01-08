@@ -694,6 +694,512 @@
             color: var(--cor-amarelo);
         }
         
+        /* Modal PIX - Rolável */
+        .pix-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1002;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.4s ease;
+            padding: 20px;
+            overflow-y: auto; /* Permite rolagem no modal */
+        }
+        
+        .pix-modal-content {
+            background-color: var(--cor-branco);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh; /* Altura máxima para rolagem */
+            overflow-y: auto; /* Permite rolagem interna */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s ease;
+            position: relative;
+        }
+        
+        /* Personalizar scrollbar do modal */
+        .pix-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .pix-modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 0 20px 20px 0;
+        }
+        
+        .pix-modal-content::-webkit-scrollbar-thumb {
+            background: var(--cor-azul);
+            border-radius: 4px;
+        }
+        
+        .pix-modal-content::-webkit-scrollbar-thumb:hover {
+            background: #004080;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pix-header {
+            background: linear-gradient(135deg, var(--cor-azul) 0%, #004080 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        
+        .pix-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .pix-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .close-pix-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-pix-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .pix-main {
+            padding: 30px;
+        }
+        
+        .qr-code-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .qr-code-wrapper {
+            position: relative;
+            display: inline-block;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px dashed var(--cor-azul);
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .qr-code-img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+        
+        .qr-code-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 86, 166, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--cor-azul);
+            opacity: 0.1;
+        }
+        
+        .qr-code-text {
+            color: var(--cor-cinza);
+            font-size: 0.9rem;
+        }
+        
+        .pix-key-container {
+            background-color: var(--cor-cinza-claro);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .pix-key-container h3 {
+            color: var(--cor-azul);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .pix-key-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        
+        .pix-key {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cor-azul);
+            word-break: break-all;
+            flex: 1;
+            margin-right: 15px;
+        }
+        
+        .copy-pix-key {
+            background-color: var(--cor-verde);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .copy-pix-key:hover {
+            background-color: #006600;
+            transform: translateY(-2px);
+        }
+        
+        .copy-pix-key.copied {
+            background-color: var(--cor-amarelo);
+            color: #333;
+        }
+        
+        .pix-key-instruction {
+            font-size: 0.85rem;
+            color: var(--cor-cinza);
+            font-style: italic;
+        }
+        
+        .pix-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: rgba(0, 86, 166, 0.05);
+            border-radius: 8px;
+        }
+        
+        .info-item i {
+            color: var(--cor-azul);
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+        
+        .info-item h4 {
+            color: var(--cor-azul);
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .info-item p {
+            color: var(--cor-cinza);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .pix-footer {
+            padding: 20px 30px 30px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            background-color: var(--cor-branco);
+            position: sticky;
+            bottom: 0;
+        }
+        
+        .pix-donate-done {
+            background-color: var(--cor-amarelo);
+            color: #333;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .pix-donate-done:hover {
+            background-color: #e6c200;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .pix-disclaimer {
+            font-size: 0.8rem;
+            color: var(--cor-cinza);
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .pix-disclaimer i {
+            color: var(--cor-verde);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        /* Informações adicionais para rolagem */
+        .pix-additional-info {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: rgba(0, 86, 166, 0.03);
+            border-radius: 10px;
+        }
+        
+        .pix-additional-info h4 {
+            color: var(--cor-azul);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pix-additional-info ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .pix-additional-info li {
+            color: var(--cor-cinza);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Modal de Agradecimento */
+        .thanks-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1003;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+            padding: 20px;
+        }
+        
+        .thanks-modal-content {
+            background: linear-gradient(135deg, var(--cor-azul) 0%, #003366 100%);
+            color: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: thanksAppear 0.8s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes thanksAppear {
+            0% { 
+                opacity: 0;
+                transform: scale(0.8) rotate(-10deg);
+            }
+            70% { 
+                opacity: 1;
+                transform: scale(1.05) rotate(5deg);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+        
+        .thanks-animation {
+            position: relative;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        
+        .thanks-icon {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 3.5rem;
+            animation: heartbeat 1.5s ease infinite;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .thanks-confetti {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background-color: var(--cor-amarelo);
+            top: -20px;
+            animation: confettiFall 2s ease infinite;
+        }
+        
+        .thanks-confetti:nth-child(2) {
+            left: 30%;
+            background-color: var(--cor-verde);
+            animation-delay: 0.5s;
+        }
+        
+        .thanks-confetti:nth-child(3) {
+            left: 70%;
+            background-color: #ff6b6b;
+            animation-delay: 1s;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                top: -20px;
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                transform: rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .thanks-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .thanks-message {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .thanks-submessage {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .thanks-quote {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .thanks-quote i:first-child {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            opacity: 0.5;
+        }
+        
+        .thanks-quote i:last-child {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            opacity: 0.5;
+        }
+        
+        .thanks-quote p {
+            font-size: 1.1rem;
+            padding: 0 25px;
+        }
+        
+        .thanks-close {
+            background-color: white;
+            color: var(--cor-azul);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto 0;
+        }
+        
+        .thanks-close:hover {
+            background-color: #f5f5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+        
         /* Responsividade */
         @media (max-width: 768px) {
             .menu-container {
@@ -760,6 +1266,55 @@
             .download-icon {
                 height: 100px;
             }
+            
+            .pix-modal-content {
+                max-width: 95%;
+                max-height: 85vh;
+            }
+            
+            .pix-header {
+                padding: 25px 20px;
+            }
+            
+            .pix-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .pix-main {
+                padding: 20px;
+            }
+            
+            .qr-code-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .pix-key-box {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .pix-key {
+                margin-right: 0;
+                text-align: center;
+            }
+            
+            .copy-pix-key {
+                justify-content: center;
+            }
+            
+            .thanks-modal-content {
+                padding: 30px 20px;
+            }
+            
+            .thanks-title {
+                font-size: 2rem;
+            }
+            
+            .thanks-message {
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -798,6 +1353,29 @@
             .download-icon {
                 height: 90px;
             }
+            
+            .pix-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .qr-code-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .pix-key {
+                font-size: 1rem;
+            }
+            
+            .thanks-title {
+                font-size: 1.8rem;
+            }
+            
+            .thanks-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.8rem;
+            }
         }
         
         @media (min-width: 768px) {
@@ -813,6 +1391,753 @@
             
             .gallery-grid {
                 grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* Seção Ceilândia */
+        .ceilandia-section {
+            background-color: var(--cor-branco);
+            padding: 100px 20px;
+        }
+        
+        .ceilandia-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ceilandia-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .ceilandia-title {
+            color: var(--cor-azul);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        .ceilandia-subtitle {
+            color: var(--cor-cinza);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .data-item {
+            background-color: var(--cor-cinza-claro);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--cor-azul);
+        }
+        
+        .data-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .data-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cor-azul);
+            margin-bottom: 5px;
+        }
+        
+        .data-percent {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+        
+        .data-label {
+            font-weight: 600;
+            color: var(--cor-preto);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-description {
+            color: var(--cor-cinza);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .ceilandia-info {
+            background-color: rgba(0, 86, 166, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .ceilandia-info h3 {
+            color: var(--cor-azul);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ceilandia-info p {
+            color: var(--cor-preto);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .info-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .highlight {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--cor-preto);
+        }
+        
+        .highlight i {
+            color: var(--cor-verde);
+            font-size: 1.1rem;
+            min-width: 25px;
+        }
+        
+        /* Foto à direita */
+        .ceilandia-photo {
+            position: relative;
+        }
+        
+        .photo-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+        }
+        
+        .ceilandia-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-container:hover .ceilandia-img {
+            transform: scale(1.05);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 30px 25px 20px;
+            color: white;
+        }
+        
+        .photo-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .photo-overlay p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .photo-caption {
+            background-color: rgba(0, 86, 166, 0.08);
+            border-left: 4px solid var(--cor-verde);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .photo-caption p {
+            color: var(--cor-preto);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .photo-caption i {
+            color: var(--cor-verde);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        /* Responsividade para Ceilândia */
+        @media (max-width: 992px) {
+            .ceilandia-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ceilandia-section {
+                padding: 70px 20px;
+            }
+            
+            .ceilandia-title {
+                font-size: 1.8rem;
+            }
+            
+            .ceilandia-subtitle {
+                font-size: 1rem;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .data-item {
+                padding: 20px;
+            }
+            
+            .data-number {
+                font-size: 2rem;
+            }
+            
+            .ceilandia-img {
+                height: 300px;
+            }
+            
+            .photo-overlay {
+                padding: 20px 15px 15px;
+            }
+            
+            .photo-overlay h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ceilandia-section {
+                padding: 50px 15px;
+            }
+            
+            .ceilandia-title {
+                font-size: 1.6rem;
+            }
+            
+            .ceilandia-info {
+                padding: 20px;
+            }
+            
+            .info-highlights {
+                flex-direction: column;
+            }
+        }
+
+        /* Seção Biografia */
+        .biography-section {
+            background: linear-gradient(135deg, var(--cor-cinza-claro) 0%, #f0f4f8 100%);
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .biography-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 86, 166, 0.1) 0%, rgba(0, 86, 166, 0) 70%);
+            z-index: 1;
+        }
+        
+        .biography-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .biography-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .biography-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .biography-title {
+            color: var(--cor-azul);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        .highlight-name {
+            color: var(--cor-verde);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .biography-subtitle {
+            color: var(--cor-cinza);
+            font-size: 1.2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .biography-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+        
+        /* Foto e informações à esquerda */
+        .biography-photo {
+            position: relative;
+        }
+        
+        .photo-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-frame:hover .profile-img {
+            transform: scale(1.03);
+        }
+        
+        .photo-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to top, rgba(0, 86, 166, 0.9) 0%, transparent 100%);
+        }
+        
+        .photo-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .photo-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--cor-branco);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .photo-info .info-item.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .photo-info .info-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photo-info .info-item i {
+            color: var(--cor-azul);
+            font-size: 1.3rem;
+            min-width: 30px;
+        }
+        
+        .photo-info .info-item h4 {
+            color: var(--cor-azul);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .photo-info .info-item p {
+            color: var(--cor-cinza);
+            font-size: 0.85rem;
+        }
+        
+        /* Texto da biografia à direita */
+        .biography-text {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .biography-text > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .biography-text > *.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .biography-intro {
+            margin-bottom: 20px;
+        }
+        
+        .biography-intro h3 {
+            color: var(--cor-azul);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .lead-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--cor-preto);
+            padding-left: 20px;
+            border-left: 4px solid var(--cor-verde);
+        }
+        
+        .biography-details p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .biography-details strong {
+            color: var(--cor-azul);
+            font-weight: 600;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, rgba(0, 86, 166, 0.05) 0%, rgba(0, 128, 0, 0.05) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            border-left: 4px solid var(--cor-amarelo);
+        }
+        
+        .quote-icon {
+            color: var(--cor-amarelo);
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        
+        .quote-icon:first-child {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        
+        .quote-icon:last-child {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
+        
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #222;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .values-section {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: var(--cor-branco);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .values-section h4 {
+            color: var(--cor-azul);
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .values-section h4 i {
+            color: var(--cor-amarelo);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 86, 166, 0.03);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .value-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(0, 86, 166, 0.08);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--cor-azul) 0%, #004080 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+        }
+        
+        .value-item h5 {
+            color: var(--cor-azul);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .value-item p {
+            color: var(--cor-cinza);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Timeline da trajetória */
+        .biography-timeline {
+            background-color: var(--cor-branco);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .biography-timeline h3 {
+            color: var(--cor-azul);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--cor-azul) 0%, var(--cor-verde) 100%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--cor-azul);
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--cor-azul);
+            z-index: 2;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--cor-verde);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            background-color: rgba(0, 128, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .timeline-content {
+            background-color: var(--cor-cinza-claro);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid var(--cor-azul);
+        }
+        
+        .timeline-content h4 {
+            color: var(--cor-azul);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: var(--cor-cinza);
+            line-height: 1.5;
+        }
+        
+        /* Responsividade da biografia */
+        @media (max-width: 992px) {
+            .biography-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .profile-img {
+                height: 400px;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .biography-section {
+                padding: 70px 20px;
+            }
+            
+            .biography-title {
+                font-size: 2rem;
+            }
+            
+            .biography-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .lead-text {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img {
+                height: 350px;
+            }
+            
+            .biography-timeline {
+                padding: 30px 20px;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: -28px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .biography-section {
+                padding: 50px 15px;
+            }
+            
+            .biography-title {
+                font-size: 1.8rem;
+            }
+            
+            .biography-header {
+                margin-bottom: 40px;
+            }
+            
+            .profile-img {
+                height: 300px;
+            }
+            
+            .photo-info .info-item {
+                padding: 12px;
+            }
+            
+            .quote-box {
+                padding: 20px;
+            }
+            
+            .quote-text {
+                font-size: 1rem;
+            }
+            
+            .values-section {
+                padding: 20px;
+            }
+            
+            .value-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -863,6 +2188,143 @@
                 
                 <!-- Imagem para Mobile - substitua por 02.png -->
                 <img src="02.png" alt="Imagem do PSD Neguim da Pimenta - Mobile" class="image-mobile">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Biografia -->
+    <section class="biography-section">
+        <div class="biography-container">
+            <div class="biography-header">
+                <h2 class="biography-title">QUEM É <span class="highlight-name">NEGUIM DA PIMENTA</span></h2>
+                <p class="biography-subtitle">A trajetória de um empreendedor da periferia que faz a diferença</p>
+            </div>
+            
+            <div class="biography-content">
+                <!-- Imagem à esquerda -->
+                <div class="biography-photo">
+                    <div class="photo-frame">
+                        <img src="c.jpeg" alt="Neguim da Pimenta - Empreendedor de Ceilândia" class="profile-img">
+                        <div class="photo-decoration"></div>
+                    </div>
+                    
+                    <div class="photo-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ceilândia - DF</h4>
+                                <p>Sua raiz, sua origem</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <h4>Empresário</h4>
+                                <p>Alimentos & Combustíveis</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>Líder Comunitário</h4>
+                                <p>Compromisso social</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Texto da biografia à direita -->
+                <div class="biography-text">
+                    <div class="biography-intro">
+                        <h3>DA PERIFERIA PARA O EMPREENDEDORISMO</h3>
+                        <p class="lead-text">
+                            Neguim da Pimenta é um empresário da periferia de Ceilândia que construiu sua trajetória com <strong>trabalho, visão</strong> e forte ligação com a comunidade onde nasceu e cresceu.
+                        </p>
+                    </div>
+                    
+                    <div class="biography-details">
+                        <p>Atuando nos setores de <strong>alimentos e combustíveis</strong>, ele se destaca como um empreendedor que transformou oportunidades em negócios sólidos, gerando empregos, promovendo inclusão e movimentando a economia local.</p>
+                        
+                        <p>Com raízes firmes na quebrada, Neguim da Pimenta carrega a vivência da periferia e a <strong>negritude como pilares de sua identidade</strong> e como motor de suas decisões. Valoriza o esforço diário, a honestidade, a diversidade e o compromisso com as pessoas, abrindo caminhos para que outros também cresçam.</p>
+                        
+                        <div class="quote-box">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p class="quote-text">
+                                Sua história representa a força do empreendedor periférico e negro que enfrenta desafios, rompe barreiras e prospera sem perder a identidade, o orgulho de onde veio e o compromisso com a transformação social.
+                            </p>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                        
+                        <div class="values-section">
+                            <h4><i class="fas fa-star"></i> VALORES QUE GUIAM SUA TRAJETÓRIA</h4>
+                            <div class="values-grid">
+                                <div class="value-item">
+                                    <div class="value-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <h5>Honestidade</h5>
+                                    <p>Transparência em todas as ações</p>
+                                </div>
+                                <div class="value-item">
+                                    <div class="value-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h5>Comunidade</h5>
+                                    <p>Compromisso com as pessoas</p>
+                                </div>
+                                <div class="value-item">
+                                    <div class="value-icon">
+                                        <i class="fas fa-fist-raised"></i>
+                                    </div>
+                                    <h5>Resistência</h5>
+                                    <p>Força para superar desafios</p>
+                                </div>
+                                <div class="value-item">
+                                    <div class="value-icon">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <h5>Crescimento</h5>
+                                    <p>Desenvolvimento coletivo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline da trajetória -->
+            <div class="biography-timeline">
+                <h3><i class="fas fa-road"></i> TRAJETÓRIA DE CONQUISTAS</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Raízes</div>
+                        <div class="timeline-content">
+                            <h4>Nascido e criado em Ceilândia</h4>
+                            <p>Cresceu na periferia, compreendeu as necessidades da comunidade desde cedo</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Primeiros Negócios</div>
+                        <div class="timeline-content">
+                            <h4>Início no empreendedorismo</h4>
+                            <p>Identificou oportunidades nos setores de alimentos e combustíveis</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Consolidação</div>
+                        <div class="timeline-content">
+                            <h4>Negócios sólidos e geradores de empregos</h4>
+                            <p>Transformou pequenos empreendimentos em empresas estabelecidas</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Legado</div>
+                        <div class="timeline-content">
+                            <h4>Referência comunitária</h4>
+                            <p>Tornou-se exemplo de empreendedorismo periférico bem-sucedido</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -989,6 +2451,80 @@
         </div>
     </section>
 
+    <!-- Seção Dados Ceilândia -->
+    <section class="ceilandia-section">
+        <div class="ceilandia-container">
+            <div class="ceilandia-content">
+                <!-- Dados à esquerda -->
+                <div class="ceilandia-data">
+                    <h2 class="ceilandia-title">CEILÂNDIA EM NÚMEROS</h2>
+                    <p class="ceilandia-subtitle">Conheça o perfil demográfico do maior conjunto habitacional do DF</p>
+                    
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <div class="data-number" id="populacao">398.374</div>
+                            <div class="data-label">HABITANTES</div>
+                            <div class="data-description">Segundo o último censo do IBGE (2022)</div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-number" id="pretos-pardos">76,8<span class="data-percent">%</span></div>
+                            <div class="data-label">PRETOS E PARDOS</div>
+                            <div class="data-description">Maioria absoluta da população</div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-number">54<span class="data-percent">%</span></div>
+                            <div class="data-label">MULHERES</div>
+                            <div class="data-description">Maioria feminina na população</div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-number" id="renda">1,8</div>
+                            <div class="data-label">SALÁRIOS MÍNIMOS</div>
+                            <div class="data-description">Renda per capita média</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ceilandia-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> SOBRE CEILÂNDIA</h3>
+                        <p>Fundada em 1971 para abrigar migrantes de baixa renda, Ceilândia é a região administrativa mais populosa do Distrito Federal. O nome é uma junção de "CEI" (Campanha de Erradicação de Invasões) e "lândia" (terra).</p>
+                        
+                        <div class="info-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-home"></i>
+                                <span>Maior conjunto habitacional do DF</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-users"></i>
+                                <span>População predominantemente jovem</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-heart"></i>
+                                <span>Forte identidade cultural periférica</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Foto à direita -->
+                <div class="ceilandia-photo">
+                    <div class="photo-container">
+                        <img src="https://s2-g1.glbimg.com/lDk49O0xEJxbwOUC--0VLRxe0Es=/1920x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/z/B/pvN1HcSsecibMvGx3V0A/a0600-bddf-limpo-26032021-frame-269673.jpeg" alt="Ceilândia - Distrito Federal" class="ceilandia-img">
+                        <div class="photo-overlay">
+                            <h3>CEILÂNDIA - DF</h3>
+                            <p>Maior região administrativa do Distrito Federal</p>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-caption">
+                        <p><i class="fas fa-info-circle"></i> Ceilândia concentra a maior população negra e periférica do DF, sendo um território estratégico para políticas públicas de igualdade racial e social.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Seção de Contato Minimalista -->
     <section class="contact-section">
         <div class="contact-container">
@@ -1070,23 +2606,365 @@
         </div>
     </div>
 
+    <!-- Modal PIX Rolável -->
+    <div class="pix-modal" id="pixModal">
+        <div class="pix-modal-content">
+            <button class="close-pix-modal" id="closePixModal">&times;</button>
+            
+            <div class="pix-header">
+                <h2><i class="fas fa-donate"></i> Apoie o PSD Neguim da Pimenta</h2>
+                <p class="pix-subtitle">Faça sua doação via PIX e contribua para nossa campanha</p>
+            </div>
+            
+            <div class="pix-main">
+                <!-- QR Code PIX -->
+                <div class="qr-code-container">
+                    <div class="qr-code-wrapper">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3-a456-4266141740005204000053039865802BR5925Neguim%20da%20Pimenta%20PSD6009Sao%20Paulo62170510DoacaoPSD6304E2CA" 
+                             alt="QR Code PIX" class="qr-code-img" id="qrCodeImg">
+                        <div class="qr-code-overlay">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                    </div>
+                    <p class="qr-code-text">Escaneie este QR Code com seu aplicativo bancário</p>
+                </div>
+                
+                <!-- Chave PIX -->
+                <div class="pix-key-container">
+                    <h3><i class="fas fa-key"></i> Chave PIX (CNPJ)</h3>
+                    <div class="pix-key-box">
+                        <p class="pix-key" id="pixKey">12.345.678/0001-90</p>
+                        <button class="copy-pix-key" id="copyPixKey">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <p class="pix-key-instruction">Cole esta chave no campo "PIX Copia e Cola" do seu banco</p>
+                </div>
+                
+                <!-- Informações adicionais -->
+                <div class="pix-info">
+                    <div class="info-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div>
+                            <h4>Beneficiário</h4>
+                            <p>PSD - Partido Social Democrata</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-city"></i>
+                        <div>
+                            <h4>Cidade</h4>
+                            <p>São Paulo - SP</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <h4>Importante</h4>
+                            <p>Doações de pessoas físicas até R$ 1.064,10 são dedutíveis do IR</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informações adicionais para rolagem -->
+                <div class="pix-additional-info">
+                    <h4><i class="fas fa-question-circle"></i> Como Funciona a Doação</h4>
+                    <ul>
+                        <li>Doações de pessoas físicas são permitidas até R$ 1.064,10 por ano</li>
+                        <li>Valores acima deste limite são permitidos para pessoas jurídicas</li>
+                        <li>O PIX é a forma mais rápida e segura de doar</li>
+                        <li>Todas as doações são registradas e prestadas contas à Justiça Eleitoral</li>
+                    </ul>
+                    <p style="color: var(--cor-cinza); font-size: 0.85rem; margin-top: 10px;">
+                        <i class="fas fa-shield-alt"></i> Sua doação é sigilosa e protegida por lei.
+                    </p>
+                </div>
+                
+                <div class="pix-additional-info">
+                    <h4><i class="fas fa-receipt"></i> Comprovante de Doação</h4>
+                    <p style="color: var(--cor-cinza); font-size: 0.9rem;">
+                        Após realizar sua doação, guarde o comprovante. Ele pode ser necessário para fins de declaração de imposto de renda e comprovação perante a Justiça Eleitoral.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="pix-footer">
+                <button class="pix-donate-done" id="pixDonateDone">
+                    <i class="fas fa-check-circle"></i> Já realizei minha doação
+                </button>
+                <p class="pix-disclaimer">
+                    <i class="fas fa-shield-alt"></i> Sua doação é segura e será utilizada exclusivamente para fins partidários e eleitorais, conforme legislação.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Agradecimento -->
+    <div class="thanks-modal" id="thanksModal">
+        <div class="thanks-modal-content">
+            <div class="thanks-animation">
+                <div class="thanks-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="thanks-confetti"></div>
+                <div class="thanks-confetti"></div>
+                <div class="thanks-confetti"></div>
+            </div>
+            
+            <h2 class="thanks-title">Muito Obrigado!</h2>
+            <p class="thanks-message">Seu apoio é fundamental para nossa campanha e para construirmos uma comunidade melhor juntos.</p>
+            <p class="thanks-submessage">Agradecemos profundamente sua contribuição e confiança em nosso trabalho.</p>
+            
+            <div class="thanks-quote">
+                <i class="fas fa-quote-left"></i>
+                <p>Juntos somos mais fortes e faremos a diferença!</p>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            
+            <button class="thanks-close" id="closeThanksModal">
+                <i class="fas fa-times"></i> Fechar
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Interatividade do botão de apoio
+        // Interatividade do botão de apoio - ABRIR MODAL PIX
         const btnApoiar = document.querySelector('.btn-apoiar');
+        const pixModal = document.getElementById('pixModal');
+        const closePixModal = document.getElementById('closePixModal');
+        const copyPixKeyBtn = document.getElementById('copyPixKey');
+        const pixKey = document.getElementById('pixKey');
+        const pixDonateDone = document.getElementById('pixDonateDone');
+        const thanksModal = document.getElementById('thanksModal');
+        const closeThanksModal = document.getElementById('closeThanksModal');
         
         btnApoiar.addEventListener('click', function() {
-            alert('Obrigado pelo seu apoio ao PSD do Neguim da Pimenta! Em breve entraremos em contato.');
-        });
-        
-        // Pausar animação pulsante no hover
-        btnApoiar.addEventListener('mouseenter', function() {
+            // Parar a animação pulsante
             this.classList.remove('pulse-animation');
+            
+            // Abrir modal PIX
+            pixModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Tocar som suave de abrir modal
+            playSound('open');
+            
+            // Rolar para o topo do modal
+            const pixModalContent = document.querySelector('.pix-modal-content');
+            pixModalContent.scrollTop = 0;
         });
         
-        btnApoiar.addEventListener('mouseleave', function() {
+        // Fechar modal PIX
+        closePixModal.addEventListener('click', function() {
+            closePixModalFunc();
+        });
+        
+        function closePixModalFunc() {
+            pixModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Reativar animação pulsante no botão após um tempo
             setTimeout(() => {
-                this.classList.add('pulse-animation');
-            }, 500);
+                btnApoiar.classList.add('pulse-animation');
+            }, 1000);
+        }
+        
+        // Fechar modal PIX ao clicar fora
+        pixModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePixModalFunc();
+            }
+        });
+        
+        // Permitir rolagem dentro do modal, mas não fora
+        const pixModalContent = document.querySelector('.pix-modal-content');
+        pixModalContent.addEventListener('wheel', function(e) {
+            // Permitir a rolagem normal dentro do modal
+            e.stopPropagation();
+        });
+        
+        // Impedir rolagem do body quando o modal estiver aberto
+        function preventBodyScroll(e) {
+            if (pixModal.style.display === 'flex') {
+                // Se estiver no topo do modal e tentar rolar para cima, não permitir
+                if (pixModalContent.scrollTop === 0 && e.deltaY < 0) {
+                    e.preventDefault();
+                }
+                // Se estiver no final do modal e tentar rolar para baixo, não permitir
+                else if (pixModalContent.scrollHeight - pixModalContent.clientHeight <= pixModalContent.scrollTop + 1 && e.deltaY > 0) {
+                    e.preventDefault();
+                }
+            }
+        }
+        
+        // Copiar chave PIX
+        copyPixKeyBtn.addEventListener('click', function() {
+            const textToCopy = pixKey.textContent;
+            
+            // Usar a API de Clipboard
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Feedback visual
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                this.classList.add('copied');
+                
+                // Tocar som de confirmação
+                playSound('copy');
+                
+                // Restaurar após 3 segundos
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.classList.remove('copied');
+                }, 3000);
+            }).catch(err => {
+                console.error('Erro ao copiar texto: ', err);
+                // Método alternativo para navegadores mais antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    // Feedback visual
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                    this.classList.add('copied');
+                    
+                    // Tocar som de confirmação
+                    playSound('copy');
+                    
+                    // Restaurar após 3 segundos
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.remove('copied');
+                    }, 3000);
+                } catch (err) {
+                    console.error('Erro ao copiar texto: ', err);
+                    alert('Não foi possível copiar a chave PIX. Tente copiar manualmente: ' + textToCopy);
+                }
+                document.body.removeChild(textArea);
+            });
+        });
+        
+        // Botão "Já realizei minha doação"
+        pixDonateDone.addEventListener('click', function() {
+            // Fechar modal PIX
+            closePixModalFunc();
+            
+            // Mostrar modal de agradecimento após um breve delay
+            setTimeout(() => {
+                thanksModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Tocar som de agradecimento
+                playSound('thanks');
+            }, 300);
+        });
+        
+        // Fechar modal de agradecimento
+        closeThanksModal.addEventListener('click', function() {
+            thanksModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Fechar modal de agradecimento ao clicar fora
+        thanksModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                thanksModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Função para tocar sons
+        function playSound(type) {
+            // Criar elementos de áudio
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            if (type === 'open') {
+                // Som suave de abrir modal (beep ascendente)
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.2);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.3);
+                
+            } else if (type === 'copy') {
+                // Som de confirmação de cópia
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.2);
+                
+            } else if (type === 'thanks') {
+                // Tocar música de agradecimento (pequena melodia)
+                playThanksMelody(audioContext);
+            }
+        }
+        
+        // Melodia de agradecimento
+        function playThanksMelody(audioContext) {
+            const notes = [
+                {freq: 523.25, duration: 0.3}, // C5
+                {freq: 587.33, duration: 0.3}, // D5
+                {freq: 659.25, duration: 0.3}, // E5
+                {freq: 698.46, duration: 0.5}, // F5
+                {freq: 783.99, duration: 0.5}, // G5
+                {freq: 880.00, duration: 0.7}, // A5
+                {freq: 987.77, duration: 0.7}  // B5
+            ];
+            
+            let startTime = audioContext.currentTime;
+            
+            notes.forEach((note, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(note.freq, startTime);
+                
+                gainNode.gain.setValueAtTime(0, startTime);
+                gainNode.gain.linearRampToValueAtTime(0.08, startTime + 0.05);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + note.duration);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + note.duration);
+                
+                startTime += note.duration;
+            });
+        }
+        
+        // Fechar modais com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (thanksModal.style.display === 'flex') {
+                    thanksModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (pixModal.style.display === 'flex') {
+                    closePixModalFunc();
+                }
+            }
         });
         
         // Ajustar altura da seção hero para compensar o header
@@ -1280,6 +3158,122 @@
             }
         }
         
+        // Animar itens da biografia (títulos, timeline, etc.)
+        function animateBiography() {
+            // Título da biografia
+            const biographyHeader = document.querySelector('.biography-header');
+            if (biographyHeader && isElementInViewport(biographyHeader) && !biographyHeader.classList.contains('visible')) {
+                biographyHeader.classList.add('visible');
+            }
+            
+            // Items da timeline
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                if (isElementInViewport(item) && !item.classList.contains('visible')) {
+                    // Delay para cada item da timeline
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 300);
+                }
+            });
+            
+            // Itens de valores
+            const valueItems = document.querySelectorAll('.value-item');
+            valueItems.forEach((item, index) => {
+                if (isElementInViewport(item) && !item.classList.contains('animated')) {
+                    // Adicionar uma classe de animação específica
+                    setTimeout(() => {
+                        item.classList.add('animated');
+                    }, index * 200);
+                }
+            });
+            
+            // Foto e info da biografia
+            const biographyContent = document.querySelector('.biography-content');
+            if (biographyContent && isElementInViewport(biographyContent)) {
+                // Animar elementos dentro do conteúdo da biografia
+                const photoInfoItems = document.querySelectorAll('.photo-info .info-item');
+                photoInfoItems.forEach((item, index) => {
+                    if (!item.classList.contains('animated')) {
+                        setTimeout(() => {
+                            item.classList.add('animated');
+                        }, index * 200);
+                    }
+                });
+                
+                // Animar texto da biografia
+                const biographyTexts = document.querySelectorAll('.biography-text > *');
+                biographyTexts.forEach((item, index) => {
+                    if (!item.classList.contains('animated')) {
+                        setTimeout(() => {
+                            item.classList.add('animated');
+                        }, index * 200);
+                    }
+                });
+            }
+        }
+        
+        // Animar números da seção Ceilândia
+        function animateCeilandiaNumbers() {
+            const populacaoElement = document.getElementById('populacao');
+            const pretosPardosElement = document.getElementById('pretos-pardos');
+            const rendaElement = document.getElementById('renda');
+            
+            // Valores finais
+            const populacaoFinal = 398374;
+            const pretosPardosFinal = 76.8;
+            const rendaFinal = 1.8;
+            
+            // Animar apenas se o elemento estiver visível
+            if (populacaoElement && isElementInViewport(populacaoElement) && !populacaoElement.classList.contains('animated')) {
+                populacaoElement.classList.add('animated');
+                pretosPardosElement.classList.add('animated');
+                rendaElement.classList.add('animated');
+                
+                animateNumber(populacaoElement, populacaoFinal, 1500);
+                animateNumber(pretosPardosElement, pretosPardosFinal, 1500);
+                animateNumber(rendaElement, rendaFinal, 1500);
+            }
+        }
+        
+        // Função para animar números
+        function animateNumber(element, finalValue, duration) {
+            const startValue = 0;
+            const startTime = performance.now();
+            
+            function updateNumber(currentTime) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
+                
+                // Easing function para animação suave
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                
+                const currentValue = Math.floor(startValue + (finalValue - startValue) * easeOutQuart);
+                
+                // Formatar números
+                if (element === document.getElementById('populacao')) {
+                    element.textContent = currentValue.toLocaleString('pt-BR');
+                } else if (element === document.getElementById('pretos-pardos')) {
+                    element.textContent = currentValue.toFixed(1).replace('.', ',');
+                } else if (element === document.getElementById('renda')) {
+                    element.textContent = currentValue.toFixed(1).replace('.', ',');
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+        
+        // Função para verificar todos os elementos visíveis
+        function checkAllVisibility() {
+            checkVisibility(); // Sua função original
+            animateBiography(); // Biografia
+            animateCeilandiaNumbers(); // Números de Ceilândia
+        }
+        
         // Mostrar imagem hero imediatamente (sem esperar scroll)
         setTimeout(() => {
             const heroImage = document.getElementById('heroImage');
@@ -1321,10 +3315,17 @@
             }
         });
         
-        // Fechar modal com tecla ESC
+        // Fechar modal com tecla ESC (também para modal da galeria)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeModal();
+                if (thanksModal.style.display === 'flex') {
+                    thanksModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (pixModal.style.display === 'flex') {
+                    closePixModalFunc();
+                } else if (document.getElementById('imageModal').style.display === 'flex') {
+                    closeModal();
+                }
             }
         });
         
@@ -1332,7 +3333,7 @@
         window.addEventListener('load', function() {
             adjustHeroHeight();
             checkVideoPlayback();
-            checkVisibility(); // Verificar elementos visíveis inicialmente
+            checkAllVisibility(); // Verificar elementos visíveis inicialmente
             
             const video = document.querySelector('.video-background');
             
@@ -1357,17 +3358,17 @@
         });
         
         // Verificar elementos visíveis durante o scroll
-        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('scroll', checkAllVisibility);
         window.addEventListener('resize', function() {
             adjustHeroHeight();
-            checkVisibility();
+            checkAllVisibility();
         });
         
         // Detectar mudança de orientação do dispositivo
         window.addEventListener('orientationchange', function() {
             setTimeout(() => {
                 adjustHeroHeight();
-                checkVisibility();
+                checkAllVisibility();
             }, 100);
         });
     </script>
