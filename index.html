@@ -1200,6 +1200,200 @@
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
         }
         
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 12px 0;
+            }
+            
+            .logo {
+                height: 35px;
+            }
+            
+            .btn-apoiar {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .image-container {
+                width: 96%;
+                height: 82vh;
+            }
+            
+            .video-overlay {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+            
+            .image-desktop {
+                display: none;
+            }
+            
+            .image-mobile {
+                display: block;
+            }
+            
+            .downloads-section,
+            .gallery-section,
+            .contact-section {
+                padding: 70px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+            
+            .contact-icon {
+                font-size: 2rem;
+            }
+            
+            .download-icon {
+                height: 100px;
+            }
+            
+            .pix-modal-content {
+                max-width: 95%;
+                max-height: 85vh;
+            }
+            
+            .pix-header {
+                padding: 25px 20px;
+            }
+            
+            .pix-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .pix-main {
+                padding: 20px;
+            }
+            
+            .qr-code-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .pix-key-box {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .pix-key {
+                margin-right: 0;
+                text-align: center;
+            }
+            
+            .copy-pix-key {
+                justify-content: center;
+            }
+            
+            .thanks-modal-content {
+                padding: 30px 20px;
+            }
+            
+            .thanks-title {
+                font-size: 2rem;
+            }
+            
+            .thanks-message {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                height: 30px;
+            }
+            
+            .btn-apoiar {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .image-container {
+                width: 98%;
+                height: 78vh;
+            }
+            
+            .downloads-section,
+            .gallery-section,
+            .contact-section {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .download-content {
+                padding: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-icon {
+                height: 90px;
+            }
+            
+            .pix-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .qr-code-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .pix-key {
+                font-size: 1rem;
+            }
+            
+            .thanks-title {
+                font-size: 1.8rem;
+            }
+            
+            .thanks-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .contact-card:nth-child(3) {
+                grid-column: span 2;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
         /* Seção Ceilândia */
         .ceilandia-section {
             background-color: var(--cor-branco);
@@ -1389,6 +1583,76 @@
             flex-shrink: 0;
         }
         
+        /* Responsividade para Ceilândia */
+        @media (max-width: 992px) {
+            .ceilandia-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ceilandia-section {
+                padding: 70px 20px;
+            }
+            
+            .ceilandia-title {
+                font-size: 1.8rem;
+            }
+            
+            .ceilandia-subtitle {
+                font-size: 1rem;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .data-item {
+                padding: 20px;
+            }
+            
+            .data-number {
+                font-size: 2rem;
+            }
+            
+            .ceilandia-img {
+                height: 300px;
+            }
+            
+            .photo-overlay {
+                padding: 20px 15px 15px;
+            }
+            
+            .photo-overlay h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ceilandia-section {
+                padding: 50px 15px;
+            }
+            
+            .ceilandia-title {
+                font-size: 1.6rem;
+            }
+            
+            .ceilandia-info {
+                padding: 20px;
+            }
+            
+            .info-highlights {
+                flex-direction: column;
+            }
+        }
+
         /* Seção Biografia */
         .biography-section {
             background: linear-gradient(135deg, var(--cor-cinza-claro) 0%, #f0f4f8 100%);
@@ -1783,194 +2047,27 @@
             line-height: 1.5;
         }
         
-        /* RESPONSIVIDADE - AJUSTES ESPECIAIS PARA MOBILE */
-        @media (max-width: 768px) {
-            /* Header */
-            .menu-container {
-                padding: 12px 0;
-            }
-            
-            .logo {
-                height: 35px;
-            }
-            
-            .btn-apoiar {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            /* SEÇÃO HERO - IMAGEM MOBILE 100% DA LARGURA */
-            .hero-section {
-                position: relative;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                margin-top: 60px;
-            }
-            
-            .image-container {
-                position: relative;
-                width: 100vw; /* 100% da largura da viewport */
-                height: calc(100vh - 60px); /* Altura menos header */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .hero-image {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0;
-                margin: 0;
-            }
-            
-            /* IMAGEM MOBILE - SEMPRE 100% DA LARGURA */
-            .image-mobile {
-                width: 100%;
-                height: auto;
-                max-height: 100%;
-                object-fit: contain; /* Mostra imagem completa */
-                display: block;
-                max-width: 100%;
-            }
-            
-            .image-desktop {
-                display: none;
-            }
-            
-            .video-overlay {
-                background-color: rgba(0, 0, 0, 0.85);
-            }
-            
-            /* Outras seções */
-            .downloads-section,
-            .gallery-section,
-            .contact-section,
-            .ceilandia-section,
-            .biography-section {
-                padding: 70px 20px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .section-subtitle {
-                font-size: 1rem;
-            }
-            
-            .downloads-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .contact-card {
-                padding: 30px 20px;
-            }
-            
-            .contact-icon {
-                font-size: 2rem;
-            }
-            
-            .download-icon {
-                height: 100px;
-            }
-            
-            /* Modal PIX */
-            .pix-modal-content {
-                max-width: 95%;
-                max-height: 85vh;
-            }
-            
-            .pix-header {
-                padding: 25px 20px;
-            }
-            
-            .pix-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .pix-main {
-                padding: 20px;
-            }
-            
-            .qr-code-img {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .pix-key-box {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 15px;
-            }
-            
-            .pix-key {
-                margin-right: 0;
-                text-align: center;
-            }
-            
-            .copy-pix-key {
-                justify-content: center;
-            }
-            
-            /* Modal de agradecimento */
-            .thanks-modal-content {
-                padding: 30px 20px;
-            }
-            
-            .thanks-title {
-                font-size: 2rem;
-            }
-            
-            .thanks-message {
-                font-size: 1.1rem;
-            }
-            
-            /* Seção Ceilândia */
-            .ceilandia-content {
+        /* Responsividade da biografia */
+        @media (max-width: 992px) {
+            .biography-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             
-            .data-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .profile-img {
+                height: 400px;
             }
             
-            .data-item {
-                padding: 20px;
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .biography-section {
+                padding: 70px 20px;
             }
             
-            .data-number {
-                font-size: 2rem;
-            }
-            
-            .ceilandia-img {
-                height: 300px;
-            }
-            
-            .photo-overlay {
-                padding: 20px 15px 15px;
-            }
-            
-            .photo-overlay h3 {
-                font-size: 1.3rem;
-            }
-            
-            /* Seção Biografia */
             .biography-title {
                 font-size: 2rem;
             }
@@ -1985,11 +2082,6 @@
             
             .profile-img {
                 height: 350px;
-            }
-            
-            .biography-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
             }
             
             .biography-timeline {
@@ -2007,106 +2099,9 @@
             .values-grid {
                 grid-template-columns: 1fr;
             }
-            
-            /* Contato grid para tablet */
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 480px) {
-            /* Header */
-            .logo {
-                height: 30px;
-            }
-            
-            .btn-apoiar {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-            
-            /* Hero section mobile - TELAS PEQUENAS */
-            .hero-section {
-                min-height: 80vh;
-                margin-top: 50px;
-            }
-            
-            .image-container {
-                width: 100vw;
-                height: calc(80vh - 50px);
-                padding: 0;
-            }
-            
-            .image-mobile {
-                width: 100%;
-                height: auto;
-                max-height: 100%;
-            }
-            
-            /* Outras seções */
-            .downloads-section,
-            .gallery-section,
-            .contact-section,
-            .ceilandia-section,
-            .biography-section {
-                padding: 50px 15px;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .download-content {
-                padding: 20px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .download-icon {
-                height: 90px;
-            }
-            
-            /* Modal PIX */
-            .pix-header h2 {
-                font-size: 1.3rem;
-            }
-            
-            .qr-code-img {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .pix-key {
-                font-size: 1rem;
-            }
-            
-            /* Modal agradecimento */
-            .thanks-title {
-                font-size: 1.8rem;
-            }
-            
-            .thanks-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2.8rem;
-            }
-            
-            /* Ceilândia */
-            .ceilandia-title {
-                font-size: 1.6rem;
-            }
-            
-            .ceilandia-info {
-                padding: 20px;
-            }
-            
-            .info-highlights {
-                flex-direction: column;
-            }
-            
-            /* Biografia */
             .biography-section {
                 padding: 50px 15px;
             }
@@ -2143,82 +2138,6 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.2rem;
-            }
-        }
-        
-        /* Para tablets em modo paisagem */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .image-container {
-                height: calc(100vh - 60px);
-            }
-            
-            .image-mobile {
-                max-height: 90vh;
-            }
-        }
-        
-        /* Para telas muito pequenas em modo paisagem */
-        @media (max-width: 480px) and (orientation: landscape) {
-            .hero-section {
-                height: 100vh;
-            }
-            
-            .image-container {
-                height: calc(100vh - 50px);
-            }
-            
-            .image-mobile {
-                max-height: 80vh;
-            }
-        }
-        
-        /* Para desktop */
-        @media (min-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .contact-card:nth-child(3) {
-                grid-column: span 2;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-        
-        /* Para telas muito grandes */
-        @media (min-width: 1400px) {
-            .image-container {
-                max-width: 1400px;
-            }
-            
-            .downloads-container,
-            .gallery-container,
-            .contact-container,
-            .ceilandia-container,
-            .biography-container {
-                max-width: 1400px;
-            }
-        }
-        
-        /* GARANTIR QUE IMAGEM MOBILE SEMPRE TENHA 100% DA LARGURA */
-        @media (max-width: 768px) {
-            .image-mobile {
-                width: 100% !important;
-                max-width: 100% !important;
-                height: auto !important;
-                object-fit: contain !important;
-            }
-            
-            .hero-section,
-            .image-container,
-            .hero-image {
-                width: 100% !important;
-                max-width: 100% !important;
-                overflow: hidden !important;
             }
         }
     </style>
@@ -2293,7 +2212,7 @@
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <h4>Ceilândia - DF</h4>
+                                <h4>Pernambuco</h4>
                                 <p>Sua raiz, sua origem</p>
                             </div>
                         </div>
@@ -2319,7 +2238,7 @@
                     <div class="biography-intro">
                         <h3>DA PERIFERIA PARA O EMPREENDEDORISMO</h3>
                         <p class="lead-text">
-                            Neguim da Pimenta é um empresário da periferia de Ceilândia que construiu sua trajetória com <strong>trabalho, visão</strong> e forte ligação com a comunidade onde nasceu e cresceu.
+                            Neguim da Pimenta é um empresário que batalhou e construiu sua trajetória com <strong>trabalho, visão</strong> e forte ligação com a comunidade onde nasceu e cresceu.
                         </p>
                     </div>
                     
@@ -2380,7 +2299,7 @@
                     <div class="timeline-item">
                         <div class="timeline-date">Raízes</div>
                         <div class="timeline-content">
-                            <h4>Nascido e criado em Ceilândia</h4>
+                            <h4>Nascido e criado em Pernambuco</h4>
                             <p>Cresceu na periferia, compreendeu as necessidades da comunidade desde cedo</p>
                         </div>
                     </div>
@@ -3044,8 +2963,6 @@
                     document.body.style.overflow = 'auto';
                 } else if (pixModal.style.display === 'flex') {
                     closePixModalFunc();
-                } else if (document.getElementById('imageModal').style.display === 'flex') {
-                    closeModal();
                 }
             }
         });
@@ -3053,19 +2970,10 @@
         // Ajustar altura da seção hero para compensar o header
         function adjustHeroHeight() {
             const heroSection = document.querySelector('.hero-section');
-            const header = document.querySelector('header');
-            const headerHeight = header ? header.offsetHeight : 0;
+            const headerHeight = document.querySelector('header').offsetHeight;
             
-            // Ajustar margem superior para compensar o header
+            heroSection.style.height = `calc(100vh - ${headerHeight}px)`;
             heroSection.style.marginTop = `${headerHeight}px`;
-            
-            // Para mobile, ajustar altura dos containers também
-            if (window.innerWidth <= 768) {
-                const imageContainer = document.querySelector('.image-container');
-                if (imageContainer) {
-                    imageContainer.style.height = `calc(100vh - ${headerHeight}px)`;
-                }
-            }
         }
         
         // Efeito de scroll no header
@@ -3463,37 +3371,6 @@
                 checkAllVisibility();
             }, 100);
         });
-        
-        // GARANTIR QUE IMAGEM MOBILE TENHA SEMPRE 100% DA LARGURA
-        function ensureMobileImageFullWidth() {
-            if (window.innerWidth <= 768) {
-                const mobileImage = document.querySelector('.image-mobile');
-                if (mobileImage) {
-                    mobileImage.style.width = '100%';
-                    mobileImage.style.maxWidth = '100%';
-                    mobileImage.style.height = 'auto';
-                    mobileImage.style.objectFit = 'contain';
-                }
-                
-                const heroSection = document.querySelector('.hero-section');
-                const imageContainer = document.querySelector('.image-container');
-                
-                if (heroSection) {
-                    heroSection.style.width = '100%';
-                    heroSection.style.maxWidth = '100%';
-                }
-                
-                if (imageContainer) {
-                    imageContainer.style.width = '100%';
-                    imageContainer.style.maxWidth = '100%';
-                }
-            }
-        }
-        
-        // Executar ao carregar e ao redimensionar
-        window.addEventListener('load', ensureMobileImageFullWidth);
-        window.addEventListener('resize', ensureMobileImageFullWidth);
-        window.addEventListener('orientationchange', ensureMobileImageFullWidth);
     </script>
 </body>
 </html>
