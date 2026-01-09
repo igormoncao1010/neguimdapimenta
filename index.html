@@ -1783,7 +1783,7 @@
             line-height: 1.5;
         }
         
-        /* RESPONSIVIDADE - AJUSTES PARA MOBILE */
+        /* RESPONSIVIDADE - AJUSTES ESPECIAIS PARA MOBILE */
         @media (max-width: 768px) {
             /* Header */
             .menu-container {
@@ -1799,46 +1799,47 @@
                 font-size: 0.9rem;
             }
             
-            /* Seção Hero - AJUSTES ESPECÍFICOS PARA A IMAGEM MOBILE */
+            /* SEÇÃO HERO - IMAGEM MOBILE 100% DA LARGURA */
             .hero-section {
                 position: relative;
-                height: auto;
-                min-height: 100vh;
+                height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                margin-top: 60px; /* Compensar header */
+                margin-top: 60px;
             }
             
             .image-container {
                 position: relative;
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-                min-height: 70vh;
+                width: 100vw; /* 100% da largura da viewport */
+                height: calc(100vh - 60px); /* Altura menos header */
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 z-index: 2;
-                padding: 0 10px;
+                padding: 0;
+                margin: 0;
             }
             
             .hero-image {
                 width: 100%;
-                height: auto;
+                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                padding: 0;
+                margin: 0;
             }
             
-            /* Imagem Mobile - AGORA 100% DA LARGURA SEMPRE */
+            /* IMAGEM MOBILE - SEMPRE 100% DA LARGURA */
             .image-mobile {
                 width: 100%;
                 height: auto;
-                max-height: 80vh;
-                object-fit: contain;
+                max-height: 100%;
+                object-fit: contain; /* Mostra imagem completa */
                 display: block;
+                max-width: 100%;
             }
             
             .image-desktop {
@@ -2024,19 +2025,22 @@
                 font-size: 0.85rem;
             }
             
-            /* Hero section mobile */
+            /* Hero section mobile - TELAS PEQUENAS */
             .hero-section {
                 min-height: 80vh;
+                margin-top: 50px;
             }
             
             .image-container {
-                width: 100%;
-                min-height: 60vh;
-                padding: 0 5px;
+                width: 100vw;
+                height: calc(80vh - 50px);
+                padding: 0;
             }
             
             .image-mobile {
-                max-height: 70vh;
+                width: 100%;
+                height: auto;
+                max-height: 100%;
             }
             
             /* Outras seções */
@@ -2142,27 +2146,29 @@
             }
         }
         
-        /* Ajustes para telas muito pequenas em modo paisagem */
+        /* Para tablets em modo paisagem */
         @media (max-width: 768px) and (orientation: landscape) {
-            .hero-section {
-                min-height: 100vh;
-            }
-            
             .image-container {
-                min-height: 80vh;
+                height: calc(100vh - 60px);
             }
             
             .image-mobile {
                 max-height: 90vh;
-                max-width: 90vw;
             }
         }
         
-        /* Ajustes para tablets maiores e desktop pequeno */
-        @media (min-width: 769px) and (max-width: 1024px) {
+        /* Para telas muito pequenas em modo paisagem */
+        @media (max-width: 480px) and (orientation: landscape) {
+            .hero-section {
+                height: 100vh;
+            }
+            
             .image-container {
-                width: 95%;
-                height: 85vh;
+                height: calc(100vh - 50px);
+            }
+            
+            .image-mobile {
+                max-height: 80vh;
             }
         }
         
@@ -2195,6 +2201,24 @@
             .ceilandia-container,
             .biography-container {
                 max-width: 1400px;
+            }
+        }
+        
+        /* GARANTIR QUE IMAGEM MOBILE SEMPRE TENHA 100% DA LARGURA */
+        @media (max-width: 768px) {
+            .image-mobile {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                object-fit: contain !important;
+            }
+            
+            .hero-section,
+            .image-container,
+            .hero-image {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
             }
         }
     </style>
@@ -3029,19 +3053,18 @@
         // Ajustar altura da seção hero para compensar o header
         function adjustHeroHeight() {
             const heroSection = document.querySelector('.hero-section');
-            const headerHeight = document.querySelector('header').offsetHeight;
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 0;
             
-            // Apenas ajustar margem superior, não altura fixa
+            // Ajustar margem superior para compensar o header
             heroSection.style.marginTop = `${headerHeight}px`;
             
-            // Para desktop, manter altura fixa
-            if (window.innerWidth > 768) {
-                heroSection.style.height = `calc(100vh - ${headerHeight}px)`;
-            } else {
-                // Para mobile, altura automática
-                heroSection.style.height = 'auto';
-                // Garantir altura mínima
-                heroSection.style.minHeight = `calc(100vh - ${headerHeight}px)`;
+            // Para mobile, ajustar altura dos containers também
+            if (window.innerWidth <= 768) {
+                const imageContainer = document.querySelector('.image-container');
+                if (imageContainer) {
+                    imageContainer.style.height = `calc(100vh - ${headerHeight}px)`;
+                }
             }
         }
         
@@ -3440,6 +3463,37 @@
                 checkAllVisibility();
             }, 100);
         });
+        
+        // GARANTIR QUE IMAGEM MOBILE TENHA SEMPRE 100% DA LARGURA
+        function ensureMobileImageFullWidth() {
+            if (window.innerWidth <= 768) {
+                const mobileImage = document.querySelector('.image-mobile');
+                if (mobileImage) {
+                    mobileImage.style.width = '100%';
+                    mobileImage.style.maxWidth = '100%';
+                    mobileImage.style.height = 'auto';
+                    mobileImage.style.objectFit = 'contain';
+                }
+                
+                const heroSection = document.querySelector('.hero-section');
+                const imageContainer = document.querySelector('.image-container');
+                
+                if (heroSection) {
+                    heroSection.style.width = '100%';
+                    heroSection.style.maxWidth = '100%';
+                }
+                
+                if (imageContainer) {
+                    imageContainer.style.width = '100%';
+                    imageContainer.style.maxWidth = '100%';
+                }
+            }
+        }
+        
+        // Executar ao carregar e ao redimensionar
+        window.addEventListener('load', ensureMobileImageFullWidth);
+        window.addEventListener('resize', ensureMobileImageFullWidth);
+        window.addEventListener('orientationchange', ensureMobileImageFullWidth);
     </script>
 </body>
 </html>
